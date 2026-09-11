@@ -15,11 +15,11 @@ Gọi `call_openai` với temperature 0.0, 0.5, 1.0 và 1.5 dùng prompt
 **"Hãy kể cho tôi một sự thật thú vị về Việt Nam."**
 
 **Bạn nhận thấy quy luật gì qua bốn phản hồi?** (2–3 câu)
-> Khi temperature tăng từ 0.0 lên 0.5, model trả lời bằng tiếng Việt, nhất quán và bám sát yêu cầu prompt (dù bị cắt vì đạt `max_tokens`). Từ temperature 1.0 trở lên, model bắt đầu chuyển sang tiếng Anh và sinh ra định dạng kỳ lạ — cho thấy temperature cao làm tăng tính ngẫu nhiên đến mức model không còn tuân theo ngôn ngữ đã yêu cầu. Temperature 1.5 thể hiện rõ nhất: câu trả lời lạc đề hoàn toàn, dùng từ ngữ không kiểm soát được.
+> *Câu trả lời của bạn*
 
 ### Câu 1.2 — Chọn temperature cho sản phẩm
 **Bạn sẽ đặt temperature bao nhiêu cho chatbot hỗ trợ khách hàng, và tại sao?**
-> Tôi sẽ đặt temperature khoảng **0.1–0.2** cho chatbot CSKH, vì mục tiêu cốt lõi là sự **nhất quán và độ tin cậy**: mọi khách hàng hỏi cùng một câu đều phải nhận được thông tin giống nhau, tránh mâu thuẫn. Temperature thấp giúp model luôn chọn câu trả lời "an toàn" và xác suất cao nhất, giảm thiểu rủi ro sinh ra thông tin sai lệch hoặc không phù hợp với chính sách công ty.
+> *Câu trả lời của bạn*
 
 ### Câu 1.3 — Đánh đổi chi phí
 Kịch bản: 10.000 người dùng hoạt động mỗi ngày, mỗi người gọi API 3 lần,
@@ -27,7 +27,7 @@ mỗi lần trung bình ~350 token đầu ra.
 
 **Ước tính GPT-4o đắt hơn GPT-4o-mini bao nhiêu lần cho workload này? Nêu một
 trường hợp GPT-4o xứng đáng với chi phí và một trường hợp nên dùng mini:**
-> Với kịch bản 10.000 user × 3 lần × 350 token output/ngày (tổng ~10.5M token), GPT-4o tốn khoảng **$105/ngày** trong khi GPT-4o-mini chỉ tốn **$6.30/ngày** — tức **GPT-4o đắt hơn khoảng 16.7 lần**. GPT-4o xứng đáng với chi phí khi cần độ chính xác cao trong các tác vụ phức tạp như phân tích hợp đồng pháp lý, viết code phức tạp hoặc lập luận nhiều bước. Ngược lại, nên dùng mini cho các tác vụ đơn giản, lặp đi lặp lại như phân loại câu hỏi, trả lời FAQ, hoặc tóm tắt văn bản ngắn — nơi chất lượng chênh lệch không đáng kể nhưng tiết kiệm chi phí rất lớn.
+> *Câu trả lời của bạn*
 
 ---
 
