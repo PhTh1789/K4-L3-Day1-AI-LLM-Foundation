@@ -1,4 +1,5 @@
 # LAB GUIDE — K4 Ngày 1: Khám Phá LLM API
+
 ## Hướng dẫn chi tiết từng bước | 4 tiếng
 
 Mọi mốc dưới đây tính theo **phút kể từ lúc buổi lab bắt đầu**, không phải giờ đồng hồ — lớp sáng và lớp chiều dùng chung một nhịp.
@@ -87,19 +88,19 @@ vì sao cần sửa và dùng lệnh nào để xác nhận kết quả.
 
 Bạn hoàn thiện các hàm theo thứ tự:
 
-| Part | Hàm | Chức năng |
-|---|---|---|
-| 1 | `call_openai()` | Gọi Chat Completions API, trả text và độ trễ. |
-| 1 | `call_openai_mini()` | Tái sử dụng hàm trên với model nhỏ hơn. |
-| 1 | `compare_models()` | So sánh phản hồi, latency và chi phí ước tính. |
-| 2 | `chat_with_system_prompt()` | Gửi persona và câu hỏi với đúng message role. |
-| 2 | `count_tokens()` | Đếm token bằng `tiktoken`, có phương án dự phòng. |
-| 2 | `estimate_cost()` | Tính token và chi phí input/output. |
-| 3 | `streaming_chatbot()` | Chat nhiều lượt và in dần phản hồi từ stream. |
-| 3 | `retry_with_backoff()` | Thử lại khi thao tác gặp lỗi tạm thời. |
-| 4 | `run_assistant()` | Ghép persona, history, stream, retry và thống kê. |
-| Bonus | `batch_compare()` | So sánh model với nhiều prompt. |
-| Bonus | `format_comparison_table()` | Trình bày kết quả so sánh thành bảng text. |
+| Part  | Hàm                         | Chức năng                                         |
+| ----- | --------------------------- | ------------------------------------------------- |
+| 1     | `call_openai()`             | Gọi Chat Completions API, trả text và độ trễ.     |
+| 1     | `call_openai_mini()`        | Tái sử dụng hàm trên với model nhỏ hơn.           |
+| 1     | `compare_models()`          | So sánh phản hồi, latency và chi phí ước tính.    |
+| 2     | `chat_with_system_prompt()` | Gửi persona và câu hỏi với đúng message role.     |
+| 2     | `count_tokens()`            | Đếm token bằng `tiktoken`, có phương án dự phòng. |
+| 2     | `estimate_cost()`           | Tính token và chi phí input/output.               |
+| 3     | `streaming_chatbot()`       | Chat nhiều lượt và in dần phản hồi từ stream.     |
+| 3     | `retry_with_backoff()`      | Thử lại khi thao tác gặp lỗi tạm thời.            |
+| 4     | `run_assistant()`           | Ghép persona, history, stream, retry và thống kê. |
+| Bonus | `batch_compare()`           | So sánh model với nhiều prompt.                   |
+| Bonus | `format_comparison_table()` | Trình bày kết quả so sánh thành bảng text.        |
 
 Khi chạy `python template.py`, Python thực thi phần demo ở cuối file. Demo
 gọi API thật nên chỉ chạy được sau khi bạn đã hoàn thiện các hàm liên quan và
@@ -126,11 +127,11 @@ Nếu chỉ chạy pytest, bạn không cần tạo `.env` vì test dùng mock.
 
 Lệnh `python -m pip install -r requirements.txt` đọc file này và cài:
 
-| Thư viện | Vai trò |
-|---|---|
-| `openai` | Cung cấp client để gọi API. |
-| `tiktoken` | Mã hóa text và đếm token. |
-| `pytest` | Tìm và chạy các bài kiểm thử. |
+| Thư viện        | Vai trò                             |
+| --------------- | ----------------------------------- |
+| `openai`        | Cung cấp client để gọi API.         |
+| `tiktoken`      | Mã hóa text và đếm token.           |
+| `pytest`        | Tìm và chạy các bài kiểm thử.       |
 | `python-dotenv` | Đọc biến môi trường từ file `.env`. |
 
 Bạn thường không cần sửa `requirements.txt` trong lab này.
@@ -139,14 +140,14 @@ Bạn thường không cần sửa `requirements.txt` trong lab này.
 
 Thư mục này chứa test tương ứng với từng part:
 
-| File | Kiểm tra |
-|---|---|
-| `tests/test_part1.py` | Cách gọi API, tham số, latency và kết quả so sánh. |
+| File                  | Kiểm tra                                             |
+| --------------------- | ---------------------------------------------------- |
+| `tests/test_part1.py` | Cách gọi API, tham số, latency và kết quả so sánh.   |
 | `tests/test_part2.py` | System prompt, token, fallback và công thức chi phí. |
-| `tests/test_part3.py` | Streaming, giới hạn history và lịch retry. |
-| `tests/test_part4.py` | Trợ lý CLI cơ bản và kịch bản hội thoại nhiều lượt. |
-| `tests/_loader.py` | Chọn file lời giải để import vào test. |
-| `tests/__init__.py` | Đánh dấu `tests` là một Python package. |
+| `tests/test_part3.py` | Streaming, giới hạn history và lịch retry.           |
+| `tests/test_part4.py` | Trợ lý CLI cơ bản và kịch bản hội thoại nhiều lượt.  |
+| `tests/_loader.py`    | Chọn file lời giải để import vào test.               |
+| `tests/__init__.py`   | Đánh dấu `tests` là một Python package.              |
 
 Khi chạy pytest, `_loader.py` ưu tiên nạp `solution/solution.py` nếu file đó
 tồn tại; nếu chưa có, nó nạp `template.py`. Các test thay client OpenAI thật
@@ -172,15 +173,15 @@ Khi chạy `python grade.py`, chương trình:
 
 Thang điểm của lab:
 
-| Hạng mục | Cách kiểm tra | Điểm |
-|---|---|---:|
-| Part 1 — API cơ bản | `tests/test_part1.py` | 15 |
-| Part 2 — System prompt và token | `tests/test_part2.py` | 15 |
-| Part 3 — Streaming và retry | `tests/test_part3.py` | 15 |
-| Part 4 — Trợ lý CLI cơ bản | `tests/test_part4.py -k Basic` | 15 |
-| Demo — Kịch bản hội thoại | `tests/test_part4.py -k Scenario` | 15 |
-| `exercises.md` — 9 câu trả lời | Kiểm tra mức độ hoàn thành | 25 |
-| **Tổng** | | **100** |
+| Hạng mục                        | Cách kiểm tra                     |    Điểm |
+| ------------------------------- | --------------------------------- | ------: |
+| Part 1 — API cơ bản             | `tests/test_part1.py`             |      15 |
+| Part 2 — System prompt và token | `tests/test_part2.py`             |      15 |
+| Part 3 — Streaming và retry     | `tests/test_part3.py`             |      15 |
+| Part 4 — Trợ lý CLI cơ bản      | `tests/test_part4.py -k Basic`    |      15 |
+| Demo — Kịch bản hội thoại       | `tests/test_part4.py -k Scenario` |      15 |
+| `exercises.md` — 9 câu trả lời  | Kiểm tra mức độ hoàn thành        |      25 |
+| **Tổng**                        |                                   | **100** |
 
 Điểm test trong từng nhóm tỷ lệ với số test pass. Điểm `exercises.md` được
 tính tự động theo số placeholder đã thay; giảng viên có thể đánh giá thêm
@@ -262,6 +263,7 @@ Trên macOS/Linux, dùng `python3 --version` nếu máy không nhận lệnh `py
 **Bước 1.** Mở terminal tại thư mục lab, tạo môi trường ảo và cài thư viện.
 
 macOS / Linux:
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
@@ -269,6 +271,7 @@ pip install -r requirements.txt
 ```
 
 Windows (PowerShell):
+
 ```powershell
 python -m venv .venv
 .venv\Scripts\Activate.ps1
@@ -281,9 +284,11 @@ script, chạy một lần `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 
 **Bước 2.** Thiết lập API key qua file `.env` (giảng viên cung cấp key dùng
 chung của lớp):
+
 ```bash
 cp .env.example .env             # Windows: copy .env.example .env
 ```
+
 Mở file `.env` vừa tạo, thay `sk-your-key-here` bằng key thật. `template.py`
 đã gọi sẵn `load_dotenv()` nên key được nạp tự động — không cần `export`.
 Key chỉ cần cho phần **chạy thật** (demo, exercises); pytest không cần key.
@@ -294,19 +299,23 @@ Key chỉ cần cho phần **chạy thật** (demo, exercises); pytest không c�
 > ~5 phút đăng ký, không cần thẻ tín dụng, và không phải sửa dòng code nào.
 
 **Bước 3.** Làm nóng bộ mã hóa của `tiktoken` (chỉ cần chạy một lần, cần mạng):
+
 ```bash
-python -c "import tiktoken; tiktoken.get_encoding('o200k_base'); print('tiktoken OK')"
+python -c "import tiktoken; tiktoken.get_encoding('o**200k**_base'); print('tiktoken OK')"
 ```
+
 Lần đầu, lệnh này tải khoảng 3–4 MB và có thể mất vài chục giây. Làm ngay bây
 giờ để Block 2 không phải chờ: nếu để tới lúc đó, `pytest` sẽ đứng im rất lâu ở
 lần gọi `count_tokens` đầu tiên và trông hệt như bị treo.
 
 **Bước 4.** Chạy thử bộ test:
+
 ```bash
 pytest tests/ -v
 ```
 
 ### ✅ CHECKPOINT 0 (phút 60)
+
 Lệnh trên phải **chạy được và báo fail hàng loạt** với thông báo
 `NotImplementedError` — đó là dấu hiệu môi trường đã đúng, chỉ còn thiếu code
 của bạn. Con số chính xác khi chưa viết dòng nào:
@@ -324,6 +333,7 @@ hoặc chưa `pip install`.
 # 🕘 phút 60–100 · BLOCK 1: API Cơ Bản
 
 ### Mục tiêu
+
 - Gọi Chat Completions API, đo độ trễ
 - Hiểu tham số `model`, `temperature`, `top_p`, `max_tokens`
 - So sánh GPT-4o với GPT-4o-mini về chất lượng / độ trễ / chi phí
@@ -354,6 +364,7 @@ Ví dụ chạy sẵn để tham khảo thêm: [Google Colab của khóa](https:
 chữ ký hàm và kiểu trả về là "hợp đồng" mà test sẽ kiểm tra, đừng sửa chúng.
 
 **Bước 2.** Xóa dòng `raise NotImplementedError(...)`, viết phần thân:
+
 ```python
 from openai import OpenAI          # import TRONG hàm — xem quy tắc ở đầu guide
 
@@ -362,6 +373,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 **Bước 3.** Đo thời gian quanh lời gọi API — `latency` là thời gian **chỉ của
 lời gọi mạng**, nên phép đo phải nằm sát trước và sau `create(...)`:
+
 ```python
 start = time.perf_counter()
 response = client.chat.completions.create(
@@ -373,6 +385,7 @@ response = client.chat.completions.create(
 )
 latency = time.perf_counter() - start
 ```
+
 Dùng `time.perf_counter()` chứ không phải `time.time()`: đây là đồng hồ chuyên
 để đo khoảng thời gian, độ phân giải cao trên mọi hệ điều hành. Trên Windows
 với Python 3.12 trở xuống, `time.time()` chỉ nhích mỗi ~15,6 ms — lời gọi đã
@@ -380,14 +393,17 @@ với Python 3.12 trở xuống, `time.time()` chỉ nhích mỗi ~15,6 ms — l
 `0.0` và test `latency > 0` sẽ trượt dù code của bạn hoàn toàn đúng.
 
 **Bước 4.** Trả về tuple `(text, latency)`:
+
 ```python
 return response.choices[0].message.content, latency
 ```
 
 **Bước 5.** Kiểm tra ngay (đừng đợi xong hết mới test):
+
 ```bash
 pytest tests/test_part1.py -k "TestCallOpenAI and not Mini" -v
 ```
+
 Kỳ vọng **3 passed**. Đừng dùng `-k CallOpenAI`: chuỗi đó khớp cả lớp
 `TestCallOpenAIMini`, nên bạn sẽ chạy 6 test và thấy 3 test của Task 1.2 báo
 đỏ trong khi bạn còn chưa làm tới nó.
@@ -396,16 +412,19 @@ Kỳ vọng **3 passed**. Đừng dùng `-k CallOpenAI`: chuỗi đó khớp c�
 
 **Bước 1.** Hàm này chỉ là "phím tắt" gọi model rẻ hơn — tái sử dụng Task 1.1,
 đừng copy-paste code:
+
 ```python
 return call_openai(prompt, model=OPENAI_MINI_MODEL,
                    temperature=temperature, top_p=top_p, max_tokens=max_tokens)
 ```
+
 Tái sử dụng nghĩa là: sau này sửa `call_openai` một chỗ, cả hai model đều
 hưởng lợi.
 
 ### Task 1.3 — `compare_models` (~15')
 
 **Bước 1.** Gọi lần lượt hai hàm trên với cùng `prompt`:
+
 ```python
 gpt4o_text, gpt4o_latency = call_openai(prompt)
 mini_text, mini_latency = call_openai_mini(prompt)
@@ -413,6 +432,7 @@ mini_text, mini_latency = call_openai_mini(prompt)
 
 **Bước 2.** Ước tính chi phí output của GPT-4o. Ở block này ta dùng ước lượng
 thô "0.75 từ ≈ 1 token" (Block 2 sẽ tính chính xác bằng tiktoken):
+
 ```python
 cost = (len(gpt4o_text.split()) / 0.75) / 1000 \
        * PRICING_PER_1K_TOKENS["gpt-4o"]["output"]
@@ -423,20 +443,26 @@ cost = (len(gpt4o_text.split()) / 0.75) / 1000 \
 Tên key phải khớp từng ký tự — test so sánh chính xác.
 
 ### ✅ CHECKPOINT 1 (phút 100)
+
 ```bash
 pytest tests/test_part1.py -v
 ```
+
 Kỳ vọng: **10 passed** —
+
 ```
 tests/test_part1.py::TestCallOpenAI::test_returns_non_empty_string PASSED
 ...
 ========================= 10 passed in ~1s =========================
 ```
+
 Nếu có API key, chạy thử thật để cảm nhận độ trễ hai model:
+
 ```bash
 python -c "from template import compare_models; \
            print(compare_models('Việt Nam có bao nhiêu tỉnh?'))"
 ```
+
 Sau đó trả lời **Câu 1.1 → 1.3** trong `exercises.md`.
 
 **Nếu bạn bị chậm:** tối thiểu Task 1.1 phải pass
@@ -449,6 +475,7 @@ phụ thuộc Task 1.3.
 # 🕘 phút 100–140 · BLOCK 2: System Prompt & Token
 
 ### Mục tiêu
+
 - Dùng message role `system` để định persona cho model
 - Đếm token thật bằng `tiktoken` thay vì đoán từ số từ
 - Tính chi phí tách bạch input / output
@@ -474,6 +501,7 @@ thức để đếm token đúng như OpenAI tính tiền.
 
 **Bước 1.** Copy cấu trúc `call_openai` của bạn (import trong hàm, đo giờ,
 trả tuple) — điểm khác duy nhất là `messages` có 2 phần tử:
+
 ```python
 messages=[
     {"role": "system", "content": system_prompt},
@@ -488,6 +516,7 @@ truyền hoặc đảo role, test chỉ tên lỗi rất rõ.
 ### Task 2.2 — `count_tokens` (~10')
 
 **Bước 1.** Viết phần "đường vui" (happy path):
+
 ```python
 import tiktoken
 enc = tiktoken.encoding_for_model(model)
@@ -496,6 +525,7 @@ return len(enc.encode(text))
 
 **Bước 2.** Bọc try/except. `tiktoken` cần mạng lần đầu để tải bảng mã hóa và
 sẽ raise nếu gặp tên model lạ — hàm tiện ích không được crash vì chuyện đó:
+
 ```python
 try:
     import tiktoken
@@ -504,22 +534,26 @@ try:
 except Exception:
     return max(1, len(text) // 4)   # ước lượng: 1 token ≈ 4 ký tự
 ```
+
 Test có một case truyền model không tồn tại — chính là để kiểm tra fallback này.
 
 ### Task 2.3 — `estimate_cost` (~15')
 
 **Bước 1.** Đếm token hai chiều bằng hàm vừa viết:
+
 ```python
 input_tokens = count_tokens(prompt, model)
 output_tokens = count_tokens(response, model)
 ```
 
 **Bước 2.** Tra bảng giá và tính. Lưu ý đơn vị là **USD trên 1000 token**:
+
 ```python
 pricing = PRICING_PER_1K_TOKENS.get(model, PRICING_PER_1K_TOKENS["gpt-4o"])
 input_cost = input_tokens / 1000 * pricing["input"]
 output_cost = output_tokens / 1000 * pricing["output"]
 ```
+
 Phải dùng `.get(...)` có giá trị dự phòng, đừng viết `PRICING_PER_1K_TOKENS[model]`.
 `PRICING_PER_1K_TOKENS` chỉ liệt kê hai model OpenAI, nên nếu bạn dùng key
 NVIDIA NIM (Phụ lục B) thì `model` mặc định là `meta/llama-...` và dấu ngoặc
@@ -531,10 +565,13 @@ Part 4 nên rất khó lần về đúng nguyên nhân.
 `output_cost`, `total_cost` (= input + output).
 
 ### ✅ CHECKPOINT 2 (phút 140)
+
 ```bash
 pytest tests/test_part2.py -v
 ```
+
 Kỳ vọng: **10 passed**. Thử nhanh với Python REPL:
+
 ```python
 >>> from template import count_tokens, estimate_cost
 >>> count_tokens("Xin chào Việt Nam")
@@ -542,6 +579,7 @@ Kỳ vọng: **10 passed**. Thử nhanh với Python REPL:
 >>> estimate_cost("câu hỏi dài...", "câu trả lời dài...")["total_cost"]
 0.000123...
 ```
+
 Trả lời **Câu 2.1 → 2.2** trong `exercises.md` (cần API key để chạy so sánh
 persona thật).
 
@@ -560,6 +598,7 @@ chưa có tiktoken) — vẫn pass phần lớn test — rồi hoàn thiện sau
 # 🕘 phút 150–190 · BLOCK 3: Streaming & Độ Bền
 
 ### Mục tiêu
+
 - Stream phản hồi token-by-token cho UX tức thời
 - Duy trì lịch sử hội thoại có giới hạn
 - Retry với exponential backoff khi API lỗi tạm thời
@@ -585,6 +624,7 @@ chuẩn: thử lại với thời gian chờ **tăng gấp đôi** sau mỗi l�
 ### Task 3.1 — `streaming_chatbot` (~25')
 
 **Bước 1.** Dựng khung vòng lặp trước, chưa cần API:
+
 ```python
 from openai import OpenAI
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -597,6 +637,7 @@ while True:
 
 **Bước 2.** Trong vòng lặp, ghép messages = history + tin nhắn mới rồi gọi
 API với `stream=True`:
+
 ```python
 messages = history + [{"role": "user", "content": user_msg}]
 stream = client.chat.completions.create(
@@ -609,17 +650,20 @@ thức nền — nhớ `or ""` cho chunk cuối).
 
 **Bước 4.** Cập nhật history sau mỗi lượt và **cắt còn 3 lượt cuối**. Một
 lượt = 1 message user + 1 message assistant, nên 3 lượt = 6 message:
+
 ```python
 history.append({"role": "user", "content": user_msg})
 history.append({"role": "assistant", "content": reply})
 history = history[-6:]
 ```
+
 Vì sao phải cắt? History dài ra mãi thì mỗi lượt sau càng tốn token input —
 chi phí tăng theo thời gian trò chuyện.
 
 ### Task 3.2 — `retry_with_backoff` (~15')
 
 **Bước 1.** Viết vòng lặp `max_retries + 1` lần thử (lần đầu + các lần retry):
+
 ```python
 for attempt in range(max_retries + 1):
     try:
@@ -629,17 +673,22 @@ for attempt in range(max_retries + 1):
             raise                          # hết lượt → ném lỗi cuối cùng ra
         time.sleep(base_delay * (2 ** attempt))
 ```
+
 Lưu ý `raise` trần (không tham số) giữ nguyên exception gốc — người gọi biết
 chính xác lỗi gì.
 
 ### ✅ CHECKPOINT 3 (phút 190)
+
 ```bash
 pytest tests/test_part3.py -v
 ```
+
 Kỳ vọng: **6 passed**. Nếu có API key, chạy chatbot thật:
+
 ```bash
 python -c "from template import streaming_chatbot; streaming_chatbot()"
 ```
+
 Hỏi 2–3 câu liên tiếp và để ý: câu sau có "nhớ" ngữ cảnh câu trước không?
 Trả lời **Câu 3.1 → 3.2** trong `exercises.md`.
 
@@ -652,6 +701,7 @@ vì mini-project dùng lại đúng kỹ thuật đó.
 # 🕘 phút 190–230 · BLOCK 4: MINI-PROJECT — Trợ Lý CLI Hoàn Chỉnh
 
 ### Mục tiêu
+
 Ghép **tất cả** những gì đã xây thành một hàm `run_assistant`: persona qua
 system prompt + streaming + history + retry + thống kê token/chi phí.
 
@@ -671,6 +721,7 @@ Ba điểm khác với `streaming_chatbot`:
 ### Các bước (25')
 
 **Bước 1.** Khởi tạo trạng thái phiên:
+
 ```python
 if get_input is None:
     get_input = input
@@ -681,6 +732,7 @@ history, num_turns, total_tokens, total_cost = [], 0, 0, 0.0
 
 **Bước 2.** Vòng lặp chính — kiểm tra `max_turns` **trước khi** đọc input
 (để `max_turns=0` thoát ngay không chờ gõ phím):
+
 ```python
 while True:
     if max_turns is not None and num_turns >= max_turns:
@@ -691,6 +743,7 @@ while True:
 ```
 
 **Bước 3.** Ghép messages **có system prompt đứng đầu**:
+
 ```python
 messages = ([{"role": "system", "content": persona}]
             + history + [{"role": "user", "content": user_msg}])
@@ -698,6 +751,7 @@ messages = ([{"role": "system", "content": persona}]
 
 **Bước 4.** Gọi API qua retry — bọc lời gọi trong lambda để
 `retry_with_backoff` gọi lại được khi lỗi:
+
 ```python
 stream = retry_with_backoff(
     lambda: client.chat.completions.create(
@@ -710,6 +764,7 @@ stream = retry_with_backoff(
 còn 6 message.
 
 **Bước 6.** Cộng dồn thống kê mỗi lượt:
+
 ```python
 num_turns += 1
 total_tokens += count_tokens(user_msg) + count_tokens(reply)
@@ -730,18 +785,20 @@ Nhóm test `Scenario` chính là "demo tự động": nó giả lập một cu�
 nhiều lượt và kiểm tra stats, history, stream — đây là 15 điểm demo của bạn.
 
 ### ✅ CHECKPOINT 4 (phút 230)
+
 ```bash
 pytest tests/test_part4.py -v
 ```
+
 Kỳ vọng: **9 passed** (4 Basic + 5 Scenario).
 Trả lời **Câu 4.1 → 4.2** trong `exercises.md`.
 
 **Nếu bạn bị chậm:** làm đúng thứ tự Bước 1 → 2 → 7 trước (vòng lặp + thoát
-+ trả dict) — chỉ vậy đã pass nhóm Basic (15đ). Phần API/stream (Bước 3–6)
-thêm sau để lấy nhóm Scenario.
+
+- trả dict) — chỉ vậy đã pass nhóm Basic (15đ). Phần API/stream (Bước 3–6)
+  thêm sau để lấy nhóm Scenario.
 
 ---
-
 
 # 🕘 phút 230–240 · WRAP-UP & NỘP BÀI
 
@@ -871,20 +928,19 @@ người khác xem được. Fork private thì giảng viên không chấm đư�
 - [ ] Đã dán link fork và bấm **Xác nhận đã nộp bài** trên trang bài Lab ở VLearn,
       trước **23:59 ngày 11/09/2026**.
 
-
 ## Phụ Lục A — Lỗi Thường Gặp
 
-| Triệu chứng | Nguyên nhân | Cách sửa |
-|---|---|---|
-| Test fail dù code "chạy thật" được | Import `OpenAI` ở đầu file | Chuyển `from openai import OpenAI` vào **trong** hàm |
-| `AuthenticationError` khi chạy pytest | Code đang gọi API thật thay vì mock | Cùng nguyên nhân trên — mock không "bắt" được import đầu file |
-| `KeyError: 'gpt4o_response'` | Tên key trong dict gõ sai | So từng ký tự với docstring |
-| Chunk cuối làm crash (`TypeError: ... NoneType`) | Quên `or ""` khi đọc `delta.content` | `delta = chunk.choices[0].delta.content or ""` |
-| History phình to, chi phí tăng dần | Quên cắt history | `history = history[-6:]` sau mỗi lượt |
-| `StopIteration` trong test scenario | Đọc input nhiều hơn số lượt kịch bản | Kiểm tra `max_turns` **trước** khi `get_input()` |
-| tiktoken treo/lỗi khi offline | Lần đầu cần mạng để tải encoding | Fallback `max(1, len(text) // 4)` trong try/except |
-| `KeyError: 'meta/llama-...'` ở Part 4 | `estimate_cost` tra bảng giá bằng `[model]` khi dùng NIM | `PRICING_PER_1K_TOKENS.get(model, PRICING_PER_1K_TOKENS["gpt-4o"])` |
-| `latency` bằng `0.0` trên Windows | `time.time()` chỉ nhích mỗi ~15,6 ms (Python ≤ 3.12) | Dùng `time.perf_counter()` để đo khoảng thời gian |
+| Triệu chứng                                      | Nguyên nhân                                              | Cách sửa                                                            |
+| ------------------------------------------------ | -------------------------------------------------------- | ------------------------------------------------------------------- |
+| Test fail dù code "chạy thật" được               | Import `OpenAI` ở đầu file                               | Chuyển `from openai import OpenAI` vào **trong** hàm                |
+| `AuthenticationError` khi chạy pytest            | Code đang gọi API thật thay vì mock                      | Cùng nguyên nhân trên — mock không "bắt" được import đầu file       |
+| `KeyError: 'gpt4o_response'`                     | Tên key trong dict gõ sai                                | So từng ký tự với docstring                                         |
+| Chunk cuối làm crash (`TypeError: ... NoneType`) | Quên `or ""` khi đọc `delta.content`                     | `delta = chunk.choices[0].delta.content or ""`                      |
+| History phình to, chi phí tăng dần               | Quên cắt history                                         | `history = history[-6:]` sau mỗi lượt                               |
+| `StopIteration` trong test scenario              | Đọc input nhiều hơn số lượt kịch bản                     | Kiểm tra `max_turns` **trước** khi `get_input()`                    |
+| tiktoken treo/lỗi khi offline                    | Lần đầu cần mạng để tải encoding                         | Fallback `max(1, len(text) // 4)` trong try/except                  |
+| `KeyError: 'meta/llama-...'` ở Part 4            | `estimate_cost` tra bảng giá bằng `[model]` khi dùng NIM | `PRICING_PER_1K_TOKENS.get(model, PRICING_PER_1K_TOKENS["gpt-4o"])` |
+| `latency` bằng `0.0` trên Windows                | `time.time()` chỉ nhích mỗi ~15,6 ms (Python ≤ 3.12)     | Dùng `time.perf_counter()` để đo khoảng thời gian                   |
 
 ---
 
